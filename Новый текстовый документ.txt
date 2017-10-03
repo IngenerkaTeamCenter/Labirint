@@ -1,0 +1,8 @@
+main.cpp
+
+lib\\vragi.cpp
+lib\\hero.cpp
+lib\\cteny.cpp
+
+Pic\\VentTeture.bmp
+Pic\\VoidOff.bmp...
