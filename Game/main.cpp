@@ -1,3 +1,5 @@
+#include "stdio.h"
+#include "dirent.h"
 #include "TXLib.h"
 #include "Libs\\corvo.cpp"
 #include "Libs\\guard.cpp"
@@ -11,27 +13,37 @@
 #include "Libs\\voidzone.cpp"
 #include "Libs\\level.cpp"
 
-
-
-
-
-Level l0, l1, l2;
+Level l0;
 
 int main()
 {
     txCreateWindow(800, 600);
     txBegin();
 
-    createLevel(l0, "Levels\\level0.txt");
-    playLevel(l0);
-    destroyLevel(l0);
 
-    createLevel(l1, "Levels\\level1.txt");
-    playLevel(l1);
-    destroyLevel(l1);
+    DIR *mydir;
+    struct dirent *filename;
+    char *dirname = "D:\\CodeBlocks\\projects\\2017-2018\\lab ver1\\Labirint-master\\Game\\Levels\\";
+    printf("%s\n", dirname);
 
-    createLevel(l2, "Levels\\level2.txt");
-    playLevel(l2);
-    destroyLevel(l2);
+    if ((mydir = opendir (dirname)) != NULL)
+    {
+        while ((filename = readdir (mydir)) != NULL)
+        {
+            printf("%s\n", filename->d_name);
+            if
+           // createLevel(l0, filename->d_name);
+            //playLevel(l0);
+            //destroyLevel(l0);
+        }
+        closedir (mydir);
+    }
+    else
+    {
+          perror ("no directory");
+    }
+
+
+
 
 }
