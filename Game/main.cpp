@@ -58,6 +58,27 @@ int main()
                 playLevel(l0);
                 destroyLevel(l0);
             }
+
+              if (txMouseButtons() & 1
+            && txMouseX() >= 200
+            && txMouseX() <= 400
+            && txMouseY() >= 0
+            && txMouseY() <= 100)
+            {
+                createLevel(l0, "level1.txt");
+                playLevel(l0);
+                destroyLevel(l0);
+            }
+              if (txMouseButtons() & 1
+            && txMouseX() >= 400
+            && txMouseX() <= 600
+            && txMouseY() >= 0
+            && txMouseY() <= 100)
+            {
+                createLevel(l0, "level2.txt");
+                playLevel(l0);
+                destroyLevel(l0);
+            }
             txSleep(100);
         }
     }

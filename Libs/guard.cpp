@@ -17,7 +17,7 @@ void drawGuard(Guard g)
         txSetColor(TX_ORANGE);
         txSetFillColor(TX_ORANGE);
         txCircle (g.x, g.y, 20);
-        txTransparentBlt(txDC(), g.x - 20, g.y - 20, 40, 68, g.texture, 0, 0, RGB(255, 255, 255));
+        txTransparentBlt(txDC(), g.x - 20, g.y - 20, 40, 40, g.texture, 0, 0, RGB(255, 255, 255));
 
         txSetColor(TX_YELLOW);
         txSetFillColor(TX_YELLOW);
