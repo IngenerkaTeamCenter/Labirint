@@ -17,7 +17,7 @@ void drawMouseRoad(int x, int y)
 {
     txSetColor(RGB (100, 0, 0));
     txSetFillColor(RGB (100, 0, 0));
-    txRectangle(x - Shirina_Dorogi, y - Shirina_Dorogi, x + Shirina_Dorogi, y + Shirina_Dorogi);
+    txRectangle(x - Road, y - Road, x + Road, y + Road);
 }
 
 
