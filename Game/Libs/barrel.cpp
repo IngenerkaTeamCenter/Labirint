@@ -5,7 +5,7 @@ struct Barrel
 {
     double x, y;
     int taken;
-    HDC *texture;
+    HDC texture;
 };
 
 void drawBarrel(Barrel b)
@@ -19,7 +19,7 @@ void actBarrel (Barrel &b, Corvo &c)
 {
     double dx = c.x - b.x;
     double dy = c.y - b.y;
-    double distance = sqrt(dx * dx + dy * dy); //теорема Пифагора
+    double distance = sqrt(dx * dx + dy * dy); //ГІГҐГ®Г°ГҐГ¬Г  ГЏГЁГґГ ГЈГ®Г°Г 
     if (distance < 20)
     {
         c.hasBarrel = 1;
