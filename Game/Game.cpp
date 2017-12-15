@@ -14,6 +14,7 @@
 #include "Libs\\voidzone.cpp"
 #include "Libs\\level.cpp"
 #include "Libs\\const.cpp"
+#include "Libs\\BuildLevel.cpp"
 
 Level l0;
 
@@ -28,7 +29,7 @@ int main()
     char *dirname = "Levels\\";
     printf("%s\n", dirname);
     int x = 0;
-    רעו nomer = 0ז
+    int nomer = 0;
 
     if ((mydir = opendir (dirname)) != NULL)
     {
@@ -40,8 +41,8 @@ int main()
                 txRectangle(x, 0, x + 200, 100);
                 txTextOut(x, 0, filename->d_name);
 
-                files[nomer] = {100,200,x,y};
-    pics[0] = {280, 120, 40, 40, txLoadImage("Pictures\\barrel.bmp"), true};
+                files[nomer] = {x,0,200,100, filename->d_name};
+
 
                 nomer++;
                 x = x + 200;
@@ -51,37 +52,20 @@ int main()
 
         while (!GetAsyncKeyState(VK_ESCAPE))
         {
-            if (txMouseButtons() & 1
-            && txMouseX() >= 0
-            && txMouseX() <= 200
-            && txMouseY() >= 0
-            && txMouseY() <= 100)
+            for (int i = 0; i < nomer; i++)
             {
-                createLevel(l0, "level0.txt");
-                playLevel(l0);
-                destroyLevel(l0);
+                if (txMouseButtons() & 1
+                && txMouseX() >= files[i].x
+                && txMouseX() <= files[i].x + files[i].width
+                && txMouseY() >= files[i].y
+                && txMouseY() <= files[i].height)
+                {
+                    createLevel(l0, files[i].text);
+                    playLevel(l0);
+                    destroyLevel(l0);
+                }
             }
 
-              if (txMouseButtons() & 1
-            && txMouseX() >= 200
-            && txMouseX() <= 400
-            && txMouseY() >= 0
-            && txMouseY() <= 100)
-            {
-                createLevel(l0, "level1.txt");
-                playLevel(l0);
-                destroyLevel(l0);
-            }
-              if (txMouseButtons() & 1
-            && txMouseX() >= 400
-            && txMouseX() <= 600
-            && txMouseY() >= 0
-            && txMouseY() <= 100)
-            {
-                createLevel(l0, "level2.txt");
-                playLevel(l0);
-                destroyLevel(l0);
-            }
             txSleep(100);
         }
     }
