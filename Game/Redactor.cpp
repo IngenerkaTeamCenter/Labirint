@@ -22,26 +22,30 @@ void saveMassive(kartinka* KART1, int nomer_kartinki)
     {
         if (KART1[i].risovat)
         {
-            save << /*KART1[i].adress << "," <<*/ KART1[i].x << "," << KART1[i].y << endl;
+            save << KART1[i].x - SHIRINA_KNOPKI << "," << KART1[i].y << "," << KART1[i].znak << endl;
         }
     }
 
     save.close();
 }
 
-void pictur (kartinka* pics, int* nomer_kartinki)
+
+void readMassive(kartinka* KART1, int nomer_kartinki)
 {
-    pics[0] = {280, 120, 40, 40, txLoadImage("Pictures\\barrel.bmp"), true};
-    pics[1] = {280, 80, 40, 40, txLoadImage("Pictures\\GuardText.bmp"), true};
-    pics[2] = {320, 80, 40, 40, txLoadImage("Pictures\\stenka.bmp"), true};
-    pics[3] = {360, 80, 40, 40, txLoadImage("Pictures\\corvo.bmp"), true};
-    pics[4] = {320, 120, 40, 40, txLoadImage("Pictures\\TrapTexture.bmp"), true};
-    *nomer_kartinki = 5;
+    ifstream save("save.txt");
+
+    for(int i = 0; i< nomer_kartinki; i++)
+    {
+       save >> KART1[i].x >>
+    }
+
+    save.close();
 }
+
 
 int main()
 {
-    txCreateWindow(800, 600);
+    txCreateWindow(800 + SHIRINA_KNOPKI, 600);
     double pictureX;
     double pictureY;
     int nomer_kartinki = 0;
@@ -50,11 +54,11 @@ int main()
     kartinka pics[PICS_NUMBER];
     for (int nomer = 0; nomer < PICS_NUMBER; nomer++)
     {
+        pics[nomer].znak = NULL;
         pics[nomer].picture = NULL;
         pics[nomer].risovat = false;
     }
 
-    pictur (pics, &nomer_kartinki);
 
     massButt();
 
@@ -81,6 +85,7 @@ int main()
                 for (int nomer = nomer_kartinki; nomer < PICS_NUMBER; nomer++)
                 {
                     pics[nomer].picture = knopki[Button_number].kartinka;
+                    pics[nomer].znak = knopki[Button_number].znak;
                 }
             }
         }
