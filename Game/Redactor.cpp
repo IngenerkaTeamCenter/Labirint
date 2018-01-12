@@ -22,12 +22,26 @@ void saveMassive(kartinka* KART1, int nomer_kartinki)
     {
         if (KART1[i].risovat)
         {
-            save << /*KART1[i].adress << "," <<*/ KART1[i].x << "," << KART1[i].y << endl;
+            save << KART1[i].x - SHIRINA_KNOPKI << "," << KART1[i].y << "," << KART1[i].znak << endl;
         }
     }
 
     save.close();
 }
+
+
+void readMassive(kartinka* KART1, int nomer_kartinki)
+{
+    ifstream save("save.txt");
+
+    for(int i = 0; i< nomer_kartinki; i++)
+    {
+       save >> KART1[i].x >>
+    }
+
+    save.close();
+}
+
 
 void pictur (kartinka* pics, int* nomer_kartinki)
 {
@@ -41,7 +55,7 @@ void pictur (kartinka* pics, int* nomer_kartinki)
 
 int main()
 {
-    txCreateWindow(800, 600);
+    txCreateWindow(800 + SHIRINA_KNOPKI, 600);
     double pictureX;
     double pictureY;
     int nomer_kartinki = 0;
@@ -50,12 +64,13 @@ int main()
     kartinka pics[PICS_NUMBER];
     for (int nomer = 0; nomer < PICS_NUMBER; nomer++)
     {
+        pics[nomer].znak = NULL;
         pics[nomer].picture = NULL;
         pics[nomer].risovat = false;
     }
 
-    pictur (pics, &nomer_kartinki);
 
+    pictur (pics, &nomer_kartinki);
     massButt();
 
     while (!GetAsyncKeyState(VK_ESCAPE))
@@ -81,6 +96,7 @@ int main()
                 for (int nomer = nomer_kartinki; nomer < PICS_NUMBER; nomer++)
                 {
                     pics[nomer].picture = knopki[Button_number].kartinka;
+                    pics[nomer].znak = knopki[Button_number].znak;
                 }
             }
         }
