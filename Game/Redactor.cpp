@@ -22,7 +22,7 @@ void saveMassive(kartinka* KART1, int nomer_kartinki)
     {
         if (KART1[i].risovat)
         {
-            save << KART1[i].x - SHIRINA_KNOPKI << "," << KART1[i].y << "," << KART1[i].znak << endl;
+            save << i << " " << nomer_kartinki << " " << KART1[i].x - SHIRINA_KNOPKI << "," << KART1[i].y << "," << KART1[i].znak << endl;
         }
     }
 
@@ -36,7 +36,7 @@ void readMassive(kartinka* KART1, int nomer_kartinki)
 
     for(int i = 0; i< nomer_kartinki; i++)
     {
-       save >> KART1[i].x >>
+       //save >> KART1[i].x >>
     }
 
     save.close();
@@ -45,11 +45,11 @@ void readMassive(kartinka* KART1, int nomer_kartinki)
 
 void pictur (kartinka* pics, int* nomer_kartinki)
 {
-    pics[0] = {280, 120, 40, 40, txLoadImage("Pictures\\barrel.bmp"), true};
-    pics[1] = {280, 80, 40, 40, txLoadImage("Pictures\\GuardText.bmp"), true};
-    pics[2] = {320, 80, 40, 40, txLoadImage("Pictures\\stenka.bmp"), true};
-    pics[3] = {360, 80, 40, 40, txLoadImage("Pictures\\corvo.bmp"), true};
-    pics[4] = {320, 120, 40, 40, txLoadImage("Pictures\\TrapTexture.bmp"), true};
+    pics[0] = {280, 120, 40, 40, txLoadImage("Pictures\\barrel.bmp"), true, "b"};
+    pics[1] = {280, 80, 40, 40, txLoadImage("Pictures\\GuardText.bmp"), true, "1"};
+    pics[2] = {320, 80, 40, 40, txLoadImage("Pictures\\stenka.bmp"), true, "1"};
+    pics[3] = {360, 80, 40, 40, txLoadImage("Pictures\\corvo.bmp"), true, "1"};
+    pics[4] = {320, 120, 40, 40, txLoadImage("Pictures\\TrapTexture.bmp"), true, "1"};
     *nomer_kartinki = 5;
 }
 
@@ -69,9 +69,8 @@ int main()
         pics[nomer].risovat = false;
     }
 
-
-    pictur (pics, &nomer_kartinki);
     massButt();
+    pictur (pics, &nomer_kartinki);
 
     while (!GetAsyncKeyState(VK_ESCAPE))
     {
