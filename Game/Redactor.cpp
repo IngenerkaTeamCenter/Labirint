@@ -43,6 +43,16 @@ void readMassive(kartinka* KART1, int nomer_kartinki)
 }
 
 
+void pictur (kartinka* pics, int* nomer_kartinki)
+{
+    pics[0] = {280, 120, 40, 40, txLoadImage("Pictures\\barrel.bmp"), true};
+    pics[1] = {280, 80, 40, 40, txLoadImage("Pictures\\GuardText.bmp"), true};
+    pics[2] = {320, 80, 40, 40, txLoadImage("Pictures\\stenka.bmp"), true};
+    pics[3] = {360, 80, 40, 40, txLoadImage("Pictures\\corvo.bmp"), true};
+    pics[4] = {320, 120, 40, 40, txLoadImage("Pictures\\TrapTexture.bmp"), true};
+    *nomer_kartinki = 5;
+}
+
 int main()
 {
     txCreateWindow(800 + SHIRINA_KNOPKI, 600);
@@ -60,6 +70,7 @@ int main()
     }
 
 
+    pictur (pics, &nomer_kartinki);
     massButt();
 
     while (!GetAsyncKeyState(VK_ESCAPE))
