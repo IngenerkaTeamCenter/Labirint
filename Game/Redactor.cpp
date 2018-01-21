@@ -9,10 +9,7 @@
 #include "Libs\\massivs.cpp"
 #include "Libs\\const.cpp"
 
-
 using namespace std;
-//const HDC buttonofftexture = tx
-//&buttonofftexture
 
 void saveMassive(kartinka* KART1, int nomer_kartinki)
 {
@@ -50,16 +47,9 @@ void readMassive(kartinka* KART1, int* nomer_kartinki)
             int pos_y = stroka_s_kartinkoi.find(',');
             string y = stroka_s_kartinkoi.substr(0, pos_y);
 
-            stroka_s_kartinkoi = stroka_s_kartinkoi.substr(pos_y + 1);
-            string symbol = stroka_s_kartinkoi;
-   /*
-            HDC pic = txLoadImage(adress.c_str());
-            HBITMAP hbm=(HBITMAP)Win32::GetCurrentObject(pic, OBJ_BITMAP);
-            BITMAP bm;
-            Win32::GetObject(hbm,sizeof(bm), (LPVOID)&bm);
-*/
-            //txBitBlt (txDC(), atoi(x.c_str()), atoi(y.c_str()), bm.bmWidth, bm.bmHeight, pic, 0, 0);
-            KART1[nomer] = {atoi(x.c_str()), atoi(y.c_str()), 40, 40, NULL, true, symbol.c_str()};
+            string symbol = stroka_s_kartinkoi.substr(pos_y + 1);
+
+            KART1[nomer] = {atoi(x.c_str()) + SHIRINA_KNOPKI, atoi(y.c_str()), 40, 40, NULL, true, symbol.c_str()};
 
             nomer++;
         }
@@ -69,17 +59,6 @@ void readMassive(kartinka* KART1, int* nomer_kartinki)
 
     map_file.close();
 }
-
-
-/*void pictur (kartinka* pics, int* nomer_kartinki)
-{
-    pics[0] = {280, 120, 40, 40, txLoadImage("Pictures\\barrel.bmp"), true, "b"};
-    pics[1] = {280, 80, 40, 40, txLoadImage("Pictures\\GuardText.bmp"), true, "1"};
-    pics[2] = {320, 80, 40, 40, txLoadImage("Pictures\\stenka.bmp"), true, "1"};
-    pics[3] = {360, 80, 40, 40, txLoadImage("Pictures\\corvo.bmp"), true, "1"};
-    pics[4] = {320, 120, 40, 40, txLoadImage("Pictures\\TrapTexture.bmp"), true, "1"};
-    *nomer_kartinki = 5;
-} */
 
 int main()
 {
@@ -98,21 +77,22 @@ int main()
     }
 
     massButt();
-    //pictur (pics, &nomer_kartinki);
+
     readMassive(pics, &nomer_kartinki);
     for (int nomer = 0; nomer < nomer_kartinki; nomer++)
     {
         if (strcmp (pics[nomer].znak, "b") == 0)
         {
             pics[nomer].picture = txLoadImage("Pictures\\barrel.bmp");
-
         }
-        if (strcmp (pics[nomer].znak, "#") == 0)
+        else if (strcmp (pics[nomer].znak, "#") == 0)
         {
             pics[nomer].picture = txLoadImage("Pictures\\stenka.bmp");
-
         }
-
+        else
+        {
+            pics[nomer].risovat = false;
+        }
     }
 
 
@@ -212,5 +192,6 @@ int main()
     {
           txDeleteDC(knopki[nomer].kartinka);
     }
+
     return 0;
 }

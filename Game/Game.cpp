@@ -56,9 +56,9 @@ int main()
             {
                 if (txMouseButtons() & 1
                 && txMouseX() >= files[i].x
-                && txMouseX() <= files[i].files[i].width
+                && txMouseX() <= files[i].x + files[i].width
                 && txMouseY() >= files[i].y
-                && txMouseY() <= files[i].files[i].height)
+                && txMouseY() <= files[i].y + files[i].height)
                 {
 
                     createLevel(l0, "level0.txt");

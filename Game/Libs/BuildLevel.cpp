@@ -1,4 +1,5 @@
-#include "Libs\\level.cpp"
+#include "level.cpp"
+
 struct CoordSaver
 {
     int x;

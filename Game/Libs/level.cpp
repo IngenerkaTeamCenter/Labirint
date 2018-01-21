@@ -1,3 +1,5 @@
+#pragma once
+
 struct Level
 {
     Corvo c;
