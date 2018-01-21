@@ -11,7 +11,7 @@ struct Barrel
 void drawBarrel(Barrel b)
 {
     if (b.taken == 0)
-        txTransparentBlt(txDC(), b.x - 20, b.y - 20, 40, 68, b.texture, 0, 0, RGB(255, 255, 255));
+        txTransparentBlt(txDC(), b.x - SHIRINA_OBJ, b.y - SHIRINA_OBJ, 40, 40, b.texture, 0, 0, RGB(255, 255, 255));
 
 }
 

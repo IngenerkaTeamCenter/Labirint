@@ -38,7 +38,7 @@ void createLevel(Level &l, string filename)
     l.guardsCount = 0;
     l.voidsCount = 0;
     string dir = "Levels\\";
-filename = dir + filename;
+    filename = dir + filename;
     FILE *file = fopen(filename.c_str(), "r");
 
     for (int i = 0; i < 15; i++)
