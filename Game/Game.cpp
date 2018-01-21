@@ -56,11 +56,20 @@ int main()
             {
                 if (txMouseButtons() & 1
                 && txMouseX() >= files[i].x
-                && txMouseX() <= files[i].x + files[i].width
+                && txMouseX() <= files[i].files[i].width
                 && txMouseY() >= files[i].y
-                && txMouseY() <= files[i].height)
+                && txMouseY() <= files[i].files[i].height)
                 {
-                    createLevel(l0, files[i].text);
+
+                    createLevel(l0, "level0.txt");
+                    playLevel(l0);
+                    destroyLevel(l0);
+
+                    createLevel(l0, "level1.txt");
+                    playLevel(l0);
+                    destroyLevel(l0);
+
+                    createLevel(l0, "level2.txt");
                     playLevel(l0);
                     destroyLevel(l0);
                 }
@@ -74,3 +83,6 @@ int main()
           perror ("no directory");
     }
 }
+  /*                  createLevel(l0, files[i].text);
+                    playLevel(l0);
+                    destroyLevel(l0); */
