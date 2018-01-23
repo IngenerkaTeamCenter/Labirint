@@ -27,7 +27,7 @@ void saveMassive(kartinka* KART1, int nomer_kartinki)
 }
 
 
-void readMassive(kartinka* KART1, int* nomer_kartinki)
+int readMassive(kartinka* KART1)
 {
     ifstream map_file;
     string stroka_s_kartinkoi = "1";
@@ -49,15 +49,17 @@ void readMassive(kartinka* KART1, int* nomer_kartinki)
 
             string symbol = stroka_s_kartinkoi.substr(pos_y + 1);
 
-            KART1[nomer] = {atoi(x.c_str()) + SHIRINA_KNOPKI, atoi(y.c_str()), 40, 40, NULL, true, symbol.c_str()};
+            char* symbol2 = new char[1];
+            strcpy(symbol2, symbol.c_str());
 
+            KART1[nomer] = {atoi(x.c_str()) + SHIRINA_KNOPKI, atoi(y.c_str()), 40, 40, NULL, true, symbol2};
             nomer++;
         }
     }
 
-    *nomer_kartinki = nomer;
-
     map_file.close();
+
+    return nomer;
 }
 
 int main()
@@ -78,7 +80,7 @@ int main()
 
     massButt();
 
-    readMassive(pics, &nomer_kartinki);
+    nomer_kartinki = readMassive(pics);
     for (int nomer = 0; nomer < nomer_kartinki; nomer++)
     {
         if (strcmp (pics[nomer].znak, "b") == 0)
@@ -89,6 +91,39 @@ int main()
         {
             pics[nomer].picture = txLoadImage("Pictures\\stenka.bmp");
         }
+        else if (strcmp (pics[nomer].znak, ".") == 0)
+        {
+            pics[nomer].picture = txLoadImage("Pictures\\doroga.bmp");
+        }
+        else if (strcmp (pics[nomer].znak, "s") == 0)
+        {
+            pics[nomer].picture = txLoadImage("Pictures\\noj.bmp");
+        }
+        else if (strcmp (pics[nomer].znak, "h") == 0)
+        {
+            pics[nomer].picture = txLoadImage("Pictures\\corvo.bmp");
+        }
+        else if (strcmp (pics[nomer].znak, "v") == 0)
+        {
+            pics[nomer].picture = txLoadImage("Pictures\\vint.bmp");
+        }
+        else if (strcmp (pics[nomer].znak, "t") == 0)
+        {
+            pics[nomer].picture = txLoadImage("Pictures\\trap.bmp");
+        }
+        else if (strcmp (pics[nomer].znak, "B") == 0)
+        {
+            pics[nomer].picture = txLoadImage("Pictures\\button.bmp");
+        }
+        else if (strcmp (pics[nomer].znak, "g") == 0)
+        {
+            pics[nomer].picture = txLoadImage("Pictures\\guard.bmp");
+        }
+        else if (strcmp (pics[nomer].znak, "@") == 0)
+        {
+            pics[nomer].picture = txLoadImage("Pictures\\void.bmp");
+        }
+
         else
         {
             pics[nomer].risovat = false;
@@ -148,8 +183,6 @@ int main()
             {
                 pics[nomer_kartinki].risovat = true;
             }
-
-            //txSleep (10);
         }
 
         for (int nomer = 0; nomer < PICS_NUMBER; nomer++)
