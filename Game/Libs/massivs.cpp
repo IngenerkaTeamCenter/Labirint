@@ -10,15 +10,6 @@ struct kartinka
     bool risovat;
     const char* znak;
 };
-/*void picsZnak(kartinka pics)
-{
-    for (int nomer = nomer_kartinki; nomer < PICS_NUMBER; nomer++)
-    {
-       pics[i].znak = knopki[Button_number].znak;
-    }
-
-}*/
-
 
 
 
