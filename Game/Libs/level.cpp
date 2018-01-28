@@ -67,7 +67,14 @@ void createLevel(Level &l, string filename)
                     l.swords[l.swordsCount].y = 40 * i + 20;
                     l.swords[l.swordsCount].x = 40 * j + 20;
                     l.swords[l.swordsCount].has = 0;
-                    l.swords[l.swordsCount].texture = txLoadImage("Pictures\\SwordTexture.bmp");
+                    if (l.swordsCount == 0)
+                    {
+                      l.swords[0].texture = txLoadImage("Pictures\\SwordTexture.bmp");
+                    }
+                    else
+                    {
+                      l.swords[l.swordsCount].texture = l.swords[0].texture;
+                    }
                     l.swordsCount++;
                 }
                 if (symbol == 'h')
@@ -81,8 +88,16 @@ void createLevel(Level &l, string filename)
                 {
                     l.vents[l.ventsCount].y = 40 * i + 20;
                     l.vents[l.ventsCount].x = 40 * j + 20;
-                    l.vents[l.ventsCount].texture = txLoadImage("Pictures\\VentTexture.bmp");
-                    l.vents[l.ventsCount].textureOpened = txLoadImage("Pictures\\VentBrokenTexture.bmp");
+                    if (l.ventsCount == 0)
+                    {
+                      l.vents[l.ventsCount].texture = txLoadImage("Pictures\\VentTexture.bmp");
+                      l.vents[l.ventsCount].textureOpened = txLoadImage("Pictures\\VentBrokenTexture.bmp");
+                    }
+                    else
+                    {
+                      l.vents[l.ventsCount].texture = l.vents[0].texture;
+                      l.vents[l.ventsCount].textureOpened = l.vents[0].textureOpened;
+                    }
                     l.vents[l.ventsCount].isOpened = 0;
                     l.ventsCount++;
                 }
@@ -90,7 +105,14 @@ void createLevel(Level &l, string filename)
                 {
                     l.barrels[l.barrelsCount].y = 40 * i + 20;
                     l.barrels[l.barrelsCount].x = 40 * j + 20;
-                    l.barrels[l.barrelsCount].texture = txLoadImage("Pictures\\BarrelTexture.bmp");
+                    if (l.barrelsCount == 0)
+                    {
+                      l.barrels[l.barrelsCount].texture = txLoadImage("Pictures\\BarrelTexture.bmp");
+                    }
+                    else
+                    {
+                      l.barrels[l.barrelsCount].texture = l.barrels[0].texture;
+                    }
                     l.barrels[l.barrelsCount].taken = 0;
                     l.barrelsCount++;
                 }
@@ -98,15 +120,30 @@ void createLevel(Level &l, string filename)
                 {
                     l.traps[l.trapsCount].y = 40 * i + 20;
                     l.traps[l.trapsCount].x = 40 * j + 20;
-                    l.traps[l.trapsCount].texture = txLoadImage("Pictures\\TrapTexture.bmp");
+                    if (l.trapsCount == 0)
+                    {
+                      l.traps[l.trapsCount].texture = txLoadImage("Pictures\\TrapTexture.bmp");
+                    }
+                    else
+                    {
+                      l.traps[l.trapsCount].texture = l.traps[0].texture;
+                    }
                     l.trapsCount++;
                 }
                 if (symbol == 'B')
                 {
                     l.buttons[l.buttonsCount].y = 40 * i + 20;
                     l.buttons[l.buttonsCount].x = 40 * j + 20;
-                    l.buttons[l.buttonsCount].textureOff = txLoadImage("Pictures\\ButtonOffTexture.bmp");
-                    l.buttons[l.buttonsCount].textureOn = txLoadImage("Pictures\\ButtonOnTexture.bmp");
+                    if (l.buttonsCount == 0)
+                    {
+                      l.buttons[l.buttonsCount].textureOff = txLoadImage("Pictures\\ButtonOffTexture.bmp");
+                      l.buttons[l.buttonsCount].textureOn = txLoadImage("Pictures\\ButtonOnTexture.bmp");
+                    }
+                    else
+                    {
+                      l.buttons[l.buttonsCount].textureOn = l.buttons[0].textureOn;
+                      l.buttons[l.buttonsCount].textureOff = l.buttons[0].textureOff;
+                    }
                     l.buttons[l.buttonsCount].on = 0;
                     l.buttonsCount++;
                 }
@@ -114,7 +151,14 @@ void createLevel(Level &l, string filename)
                 {
                     l.guards[l.guardsCount].y = 40 * i + 20;
                     l.guards[l.guardsCount].x = 40 * j + 20;
-                    l.guards[l.guardsCount].texture = txLoadImage("Pictures\\GuardText.bmp");
+                    if (l.guardsCount == 0)
+                    {
+                      l.guards[l.guardsCount].texture = txLoadImage("Pictures\\GuardText.bmp");
+                    }
+                     else
+                    {
+                      l.guards[l.guardsCount].texture = l.guards[0].texture;
+                    }
                     l.guards[l.guardsCount].isDead = 0;
                     l.guardsCount++;
                 }
@@ -122,8 +166,16 @@ void createLevel(Level &l, string filename)
                 {
                     l.voids[l.voidsCount].y = 40 * i + 20;
                     l.voids[l.voidsCount].x = 40 * j + 20;
-                    l.voids[l.voidsCount].textureActive = txLoadImage("Pictures\\VoidOn.bmp");
-                    l.voids[l.voidsCount].textureDesactive = txLoadImage("Pictures\\VoidOff.bmp");
+                    if (l.voidsCount == 0)
+                    {
+                      l.voids[l.voidsCount].textureActive = txLoadImage("Pictures\\VoidOn.bmp");
+                      l.voids[l.voidsCount].textureDesactive = txLoadImage("Pictures\\VoidOff.bmp");
+                    }
+                    else
+                    {
+                      l.voids[l.voidsCount].textureActive = l.voids[0].textureActive;
+                      l.voids[l.voidsCount].textureDesactive = l.voids[0].textureDesactive;
+                    }
                     l.voids[l.voidsCount].voidactive = 0;
                     l.voids[l.voidsCount].timer = 0;
                     l.voidsCount++;
@@ -131,6 +183,7 @@ void createLevel(Level &l, string filename)
             }
         }
     }
+
 
     for (int i = 0; i < l.trapsCount; i++)
     {
