@@ -81,52 +81,17 @@ int main()
     massButt();
 
     nomer_kartinki = readMassive(pics);
+    //Связываем картинки карты (из файла) с картинками кнопок
     for (int nomer = 0; nomer < nomer_kartinki; nomer++)
     {
-        if (strcmp (pics[nomer].znak, "b") == 0)
+        pics[nomer].risovat = false;
+        for (int nomer_knopki = 0; nomer_knopki < KOLICHESTVO_KNOPOK; nomer_knopki++)
         {
-            pics[nomer].picture = txLoadImage("Pictures\\barrel.bmp");
-        }
-        else if (strcmp (pics[nomer].znak, "#") == 0)
-        {
-            pics[nomer].picture = txLoadImage("Pictures\\stenka.bmp");
-        }
-        else if (strcmp (pics[nomer].znak, ".") == 0)
-        {
-            pics[nomer].picture = txLoadImage("Pictures\\doroga.bmp");
-        }
-        else if (strcmp (pics[nomer].znak, "s") == 0)
-        {
-            pics[nomer].picture = txLoadImage("Pictures\\noj.bmp");
-        }
-        else if (strcmp (pics[nomer].znak, "h") == 0)
-        {
-            pics[nomer].picture = txLoadImage("Pictures\\corvo.bmp");
-        }
-        else if (strcmp (pics[nomer].znak, "v") == 0)
-        {
-            pics[nomer].picture = txLoadImage("Pictures\\vint.bmp");
-        }
-        else if (strcmp (pics[nomer].znak, "t") == 0)
-        {
-            pics[nomer].picture = txLoadImage("Pictures\\trap.bmp");
-        }
-        else if (strcmp (pics[nomer].znak, "B") == 0)
-        {
-            pics[nomer].picture = txLoadImage("Pictures\\button.bmp");
-        }
-        else if (strcmp (pics[nomer].znak, "g") == 0)
-        {
-            pics[nomer].picture = txLoadImage("Pictures\\guard.bmp");
-        }
-        else if (strcmp (pics[nomer].znak, "@") == 0)
-        {
-            pics[nomer].picture = txLoadImage("Pictures\\void.bmp");
-        }
-
-        else
-        {
-            pics[nomer].risovat = false;
+            if (strcmp (pics[nomer].znak, knopki[nomer_knopki].znak) == 0)
+            {
+                pics[nomer].picture = knopki[nomer_knopki].kartinka;
+                pics[nomer].risovat = true;
+            }
         }
     }
 
@@ -163,10 +128,10 @@ int main()
 
         if(txMouseButtons() & 1  && txMouseX() > SHIRINA_KNOPKI)
         {
-            pics[nomer_kartinki].x = round (txMouseX() / 40) * 40;
-            pics[nomer_kartinki].y = round (txMouseY() / 40) * 40;
-            pics[nomer_kartinki].height = 40;
-            pics[nomer_kartinki].width = 40;
+            pics[nomer_kartinki].x = round (txMouseX() / RAZMER_OBJ) * RAZMER_OBJ;
+            pics[nomer_kartinki].y = round (txMouseY() / RAZMER_OBJ) * RAZMER_OBJ;
+            pics[nomer_kartinki].height = RAZMER_OBJ;
+            pics[nomer_kartinki].width = RAZMER_OBJ;
 
             //Checking if here exists another picture
             bool many = false;
