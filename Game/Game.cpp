@@ -27,7 +27,6 @@ int main()
     DIR *mydir;
     struct dirent *filename;
     char *dirname = "Levels\\";
-    printf("%s\n", dirname);
     int x = 0;
     int nomer = 0;
 
