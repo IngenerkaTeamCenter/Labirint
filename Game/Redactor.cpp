@@ -11,11 +11,42 @@
 
 using namespace std;
 
+
+void convertMassive(kartinka* KART1, int nomer_kartinki)
+{
+    const char* karta[40][40];
+    for (int i = 0; i < 40; i++)
+    {
+        for (int j = 0; j < 40; j++)
+        {
+            karta[i][j] = " ";
+        }
+    }
+
+
+    for (int nomer = 0; nomer < nomer_kartinki; nomer++)
+    {
+        karta[KART1[nomer].y / 40][(KART1[nomer].x - SHIRINA_KNOPKI) / 40] = KART1[nomer].znak;
+    }
+
+    ofstream save("save1.txt");
+    for (int i = 0; i < 15; i++)
+    {
+        for (int j = 0; j < 20; j++)
+        {
+            save << karta[i][j];
+        }
+        save << endl;
+    }
+    save.close();
+
+}
+
 void saveMassive(kartinka* KART1, int nomer_kartinki)
 {
     ofstream save("save.txt");
 
-    for(int i = 0; i< nomer_kartinki; i++)
+    for (int i = 0; i< nomer_kartinki; i++)
     {
         if (KART1[i].risovat)
         {
@@ -24,6 +55,8 @@ void saveMassive(kartinka* KART1, int nomer_kartinki)
     }
 
     save.close();
+
+    convertMassive(KART1, nomer_kartinki);
 }
 
 
