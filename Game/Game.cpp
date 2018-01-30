@@ -36,11 +36,14 @@ int main()
         {
             if ((strcmp(".", filename->d_name) !=0) and (strcmp("..", filename->d_name) != 0))
             {
+                char* levelmaker = new char[100];
+                strcpy(levelmaker, filename->d_name);
+
                 txSetColor(TX_BLACK);
                 txRectangle(x, 0, x + 200, 100);
-                txTextOut(x, 0, filename->d_name);
+                txTextOut(x, 0, levelmaker);
 
-                files[nomer] = {x,0,200,100, filename->d_name};
+                files[nomer] = {x,0,200,100, levelmaker};
 
 
                 nomer++;
@@ -51,26 +54,30 @@ int main()
 
         while (!GetAsyncKeyState(VK_ESCAPE))
         {
-            for (int i = 0; i < nomer; i++)
+            if (gamemode == "levelchooser")
             {
-                if (txMouseButtons() & 1
-                && txMouseX() >= files[i].x
-                && txMouseX() <= files[i].x + files[i].width
-                && txMouseY() >= files[i].y
-                && txMouseY() <= files[i].y + files[i].height)
+                for (int i = 0; i < nomer; i++)
                 {
-
-                    createLevel(l0, "level0.txt");
+                    if (txMouseButtons() & 1
+                    && txMouseX() >= files[i].x
+                    && txMouseX() <= files[i].x + files[i].width
+                    && txMouseY() >= files[i].y
+                    && txMouseY() <= files[i].y + files[i].height)
+                    {
+                        createLevel(l0, files[i].text);
+                        playLevel(l0);
+                        destroyLevel(l0);
+                    }
+                }
+            }
+            else if (gamemode == "story")
+            {
+                for (int i = 0; i < nomer; i++)
+                {
+                    createLevel(l0, files[i].text);
                     playLevel(l0);
                     destroyLevel(l0);
-
-                    createLevel(l0, "level1.txt");
-                    playLevel(l0);
-                    destroyLevel(l0);
-
-                    createLevel(l0, "level2.txt");
-                    playLevel(l0);
-                    destroyLevel(l0);
+                    txSleep(3000);
                 }
             }
 

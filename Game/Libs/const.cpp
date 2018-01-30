@@ -7,3 +7,5 @@ const int SHIRINA_OBJ = 20;
 const int RAZMER_OBJ = 40;
 
 const int PICS_NUMBER = 2000;
+
+const char* gamemode = "levelchooser";
