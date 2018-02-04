@@ -19,7 +19,7 @@ void convertMassive(kartinka* KART1, int nomer_kartinki)
     {
         for (int j = 0; j < 40; j++)
         {
-            karta[i][j] = " ";
+            karta[i][j] = "#";
         }
     }
 
@@ -38,6 +38,23 @@ void convertMassive(kartinka* KART1, int nomer_kartinki)
         }
         save << endl;
     }
+
+    if (strcmp(, "#") == 0)
+
+    for (int i = 0; i < 15; i++)
+    {
+        for (int j = 0; j < 20; j++)
+        {
+            //save << karta[i][j];
+            if (strcmp(x , y , "@") == 0)
+        }
+        //save << endl;
+    }
+
+    Найти сколько воронок у нас есть (среди karta[i][j])
+    Найти все дороги
+    И для каждой воронки отправить её на какую-то дорогу
+
     save.close();
 
 }
