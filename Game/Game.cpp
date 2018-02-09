@@ -29,9 +29,9 @@ int main()
     struct dirent *filename;
     char *dirname = "Levels\\";
     int nomer = 0;
-    int X_knopki = 100;
-    int Y_knopki = 50;
     int otstup = 20;
+    int X_knopki = 100;//800 / sqrt(nomer) - otstup;
+    int Y_knopki = 100;//600 / sqrt(nomer) - otstup;
     int x = otstup;
     int y = otstup;
     int time;
@@ -42,10 +42,6 @@ int main()
         {
             if ((strcmp(".", filename->d_name) !=0) and (strcmp("..", filename->d_name) != 0))
             {
-                /*if (nomer >= 4)
-                {
-                    y = y + 100;
-                } */
                 if (x >= screenSizeX - X_knopki)
                 {
                     x = otstup;
@@ -65,7 +61,21 @@ int main()
 
 
 //        Всего уровней nomer штук (15 например)
-
+        x = otstup;
+        y = otstup;
+        for (int i = 0; i < nomer; i++)
+        {
+            files[i].width =  800 / trunc(sqrt(nomer) + 0.999) - 2 * otstup;
+            files[i].height = 600 / trunc(sqrt(nomer) + 0.999) - 2 * otstup;
+            if (x >= screenSizeX - files[i].width)
+            {
+                x = otstup;
+                y += files[i].height + otstup;
+            }
+            files[i].x = x;
+            files[i].y = y;
+            x = x + files[i].width + otstup;
+        }
 
 
         while (!GetAsyncKeyState(VK_ESCAPE))
@@ -79,7 +89,7 @@ int main()
                 {
                     txSetColor(TX_BLACK);
                     txSetFillColor(TX_WHITE);
-                    txRectangle(files[i].x, files[i].y, files[i].x + X_knopki, files[i].y + Y_knopki);
+                    txRectangle(files[i].x, files[i].y, files[i].x + files[i].width, files[i].y + files[i].height);
                     txTextOut(files[i].x + 15, files[i].y + 15, files[i].text);
                 }
 

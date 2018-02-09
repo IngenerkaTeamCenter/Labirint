@@ -51,10 +51,6 @@ void convertMassive(kartinka* KART1, int nomer_kartinki)
         //save << endl;
     }
 
-    Найти сколько воронок у нас есть (среди karta[i][j])
-    Найти все дороги
-    И для каждой воронки отправить её на какую-то дорогу
-
     save.close();
 
 }
