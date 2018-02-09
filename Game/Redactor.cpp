@@ -39,16 +39,12 @@ void convertMassive(kartinka* KART1, int nomer_kartinki)
         save << endl;
     }
 
-    //Пишем адрес дороги, куда мы переместимся при попадании в вентиляцию
-
-    //Поиск вентиляции
-    //if (strcmp(, "#") == 0)
+    //Count of vents
     int nom_vent = 0;
     for (int i = 0; i < 15; i++)
     {
         for (int j = 0; j < 20; j++)
         {
-            //save << karta[i][j];
             if (strcmp(karta[i][j] , "@") == 0)
             {
                 nom_vent++;
@@ -56,6 +52,7 @@ void convertMassive(kartinka* KART1, int nomer_kartinki)
         }
     }
 
+    //Saving roads
     save << endl;
     int nom_dor = 0;
     bool doroga_zapisana = false;
@@ -75,13 +72,10 @@ void convertMassive(kartinka* KART1, int nomer_kartinki)
         }
     }
 
-    //Пишем стражников
+    //ГЏГЁГёГҐГ¬ Г±ГІГ°Г Г¦Г­ГЁГЄГ®Гў
     save << endl;
 
-
-
     save.close();
-
 }
 
 void saveMassive(kartinka* KART1, int nomer_kartinki)
@@ -156,7 +150,7 @@ int main()
     massButt();
 
     nomer_kartinki = readMassive(pics);
-    //Связываем картинки карты (из файла) с картинками кнопок
+    //Г‘ГўГїГ§Г»ГўГ ГҐГ¬ ГЄГ Г°ГІГЁГ­ГЄГЁ ГЄГ Г°ГІГ» (ГЁГ§ ГґГ Г©Г«Г ) Г± ГЄГ Г°ГІГЁГ­ГЄГ Г¬ГЁ ГЄГ­Г®ГЇГ®ГЄ
     for (int nomer = 0; nomer < nomer_kartinki; nomer++)
     {
         pics[nomer].risovat = false;
