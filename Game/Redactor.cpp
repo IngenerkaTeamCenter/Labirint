@@ -39,21 +39,46 @@ void convertMassive(kartinka* KART1, int nomer_kartinki)
         save << endl;
     }
 
-    if (strcmp(, "#") == 0)
+    //Пишем адрес дороги, куда мы переместимся при попадании в вентиляцию
 
+    //Поиск вентиляции
+    //if (strcmp(, "#") == 0)
+    int nom_vent = 0;
     for (int i = 0; i < 15; i++)
     {
         for (int j = 0; j < 20; j++)
         {
             //save << karta[i][j];
-            if (strcmp(x , y , "@") == 0)
+            if (strcmp(karta[i][j] , "@") == 0)
+            {
+                nom_vent++;
+            }
         }
-        //save << endl;
     }
 
-    Найти сколько воронок у нас есть (среди karta[i][j])
-    Найти все дороги
-    И для каждой воронки отправить её на какую-то дорогу
+    save << endl;
+    int nom_dor = 0;
+    bool doroga_zapisana = false;
+    for (int i = 0; i < 15; i++)
+    {
+        for (int j = 0; j < 20; j++)
+        {
+            if (strcmp(karta[i][j] , ".") == 0 && !doroga_zapisana)
+            {
+                save << i << " " << j << endl;
+                nom_dor++;
+                if (nom_dor > nom_vent)
+                {
+                    doroga_zapisana = true;
+                }
+            }
+        }
+    }
+
+    //Пишем стражников
+    save << endl;
+
+
 
     save.close();
 
