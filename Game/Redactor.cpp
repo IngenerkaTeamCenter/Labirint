@@ -3,9 +3,7 @@
 #include <fstream>
 #include <string>
 #include "Libs\\TXLib.h"
-#include "Libs\\wall.cpp"
 #include "Libs\\Menu.cpp"
-#include "Libs\\road.cpp"
 #include "Libs\\massivs.cpp"
 #include "Libs\\const.cpp"
 
@@ -167,6 +165,8 @@ int main()
     double pictureX;
     double pictureY;
     int nomer_kartinki = 0;
+    int heroCount = 0;
+    int time = 0;
 
     //Init
     kartinka pics[PICS_NUMBER];
@@ -224,8 +224,9 @@ int main()
             }
         }
 
-
-        if(txMouseButtons() & 1  && txMouseX() > SHIRINA_KNOPKI)
+        heroCount = 0;
+        if(txMouseButtons() & 1  && txMouseX() > SHIRINA_KNOPKI
+                                 && pics[nomer_kartinki].picture != NULL && heroCount != 1)
         {
             pics[nomer_kartinki].x = round (txMouseX() / RAZMER_OBJ) * RAZMER_OBJ;
             pics[nomer_kartinki].y = round (txMouseY() / RAZMER_OBJ) * RAZMER_OBJ;
@@ -241,12 +242,44 @@ int main()
                 {
                     many = true;
                 }
+                if (strcmp(pics[nomer].znak, "h") == 0 && pics[nomer].risovat)
+                {
+                    heroCount = 1;
+                    many = true;
+                }
             }
 
             if (!many)
             {
                 pics[nomer_kartinki].risovat = true;
             }
+        }
+
+        for (int nomer = 0; nomer < nomer_kartinki; nomer++)
+        {
+            if (strcmp(pics[nomer].znak, "h") == 0 && pics[nomer].risovat)
+            {
+                heroCount = 1;
+                time = time + 1;
+            }
+        }
+        if (heroCount == 0)
+        {
+            time = 0;
+        }
+
+        if(txMouseButtons() & 1  && txMouseX() > SHIRINA_KNOPKI
+                                 && strcmp(pics[nomer_kartinki].znak, "h") == 0
+                                 && time > 10 && heroCount == 1)
+        {
+            txSetColour(TX_RED);
+            txSetFillColour(RGB(255, 0, 0));
+            txSelectFont("Times New Roman", 75);
+            txTextOut(400, 250, "ERROR_405");
+            txSetColour(TX_WHITE);
+            txSetFillColour(TX_WHITE);
+            txSelectFont("Times New Roman", 25);
+            txTextOut(450, 570, "There is only one Hero");
         }
 
         for (int nomer = 0; nomer < PICS_NUMBER; nomer++)
