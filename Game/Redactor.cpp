@@ -46,7 +46,7 @@ void convertMassive(kartinka* KART1, int nomer_kartinki)
         for (int j = 0; j < 20; j++)
         {
             //save << karta[i][j];
-            if (strcmp(karta[i][j] , "@") == 0)
+            if (strcmp(karta[i][j] , "t") == 0)
             {
                 nom_vent++;
             }
@@ -62,11 +62,14 @@ void convertMassive(kartinka* KART1, int nomer_kartinki)
         {
             if (strcmp(karta[i][j] , ".") == 0 && !doroga_zapisana)
             {
-                save << i << " " << j << endl;
                 nom_dor++;
                 if (nom_dor > nom_vent)
                 {
                     doroga_zapisana = true;
+                }
+                if (strcmp(karta[i][j] , ".") == 0 && !doroga_zapisana)
+                {
+                    save << i << " " << j << endl;
                 }
             }
         }
@@ -237,12 +240,13 @@ int main()
             bool many = false;
             for (int nomer = 0; nomer < nomer_kartinki; nomer++)
             {
-                if ((pics[nomer_kartinki].x == pics[nomer].x &&
-                     pics[nomer_kartinki].y == pics[nomer].y))
+                if (((pics[nomer_kartinki].x == pics[nomer].x &&
+                     pics[nomer_kartinki].y == pics[nomer].y&&
+                     pics[nomer].risovat)))
                 {
                     many = true;
                 }
-                if (strcmp(pics[nomer].znak, "h") == 0 && pics[nomer].risovat)
+                if (strcmp(pics[nomer].znak, "h") == 0 && strcmp(pics[nomer_kartinki].znak, "h") == 0 && pics[nomer].risovat)
                 {
                     heroCount = 1;
                     many = true;
